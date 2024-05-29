@@ -1,0 +1,161 @@
+#include <iostream>
+using namespace std;
+
+/problem1
+int multiply(int x, int y) {
+    // Base case: if y is 0, the result is 0
+    if (y == 0) {
+        return 0;
+    }
+
+    // If y is positive, recursively add x
+    if (y > 0) {
+        return x + multiply(x, y - 1);
+    }
+
+    // If y is negative, recursively subtract x
+    if (y < 0) {
+        return -multiply(x, -y);
+    }
+
+    return 0;  // This return will never be reached
+}
+
+/problem2 
+  int sumOfDigits(int n) {
+    // Base case: if n is 0, the sum is 0
+    if (n == 0) {
+        return 0;
+    }
+
+    // Recursive case: add the last digit to the sum of the remaining digits
+    return (n % 10) + sumOfDigits(n / 10);
+}
+
+/problem3
+  void convertToBinary(int num) {
+    // Base case: when num is 0
+    if (num == 0) {
+        return;
+    }
+    
+    // Recursive case: first divide by 2 and convert the quotient to binary
+    convertToBinary(num / 2);
+    
+    // Print the remainder (0 or 1)
+    cout << (num % 2);
+}
+
+
+int main() {
+    /problem1 
+  int x, y;
+    cout << "Enter two integers (x and y): ";
+    cin >> x >> y;
+
+    int result = multiply(x, y);
+    cout << "Result of " << x << " multiplied by " << y << " is: " << result << endl;
+
+  /problem2
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    // Make sure to handle negative input by converting it to positive
+    int result = sumOfDigits(abs(n));
+    cout << "Sum of the digits of " << n << " is: " << result << endl;
+  /problem3
+     int decimalNumber;
+    cout << "Enter an integer: ";
+    cin >> decimalNumber;
+
+    if (decimalNumber == 0) {
+        cout << "Binary representation: 0" << endl;
+    } else {
+        cout << "Binary representation: ";
+        convertToBinary(decimalNumber);
+        cout << endl;
+    }
+/problem4
+  int m, v;
+
+    // Take input for the number of rows and columns
+    cout << "Enter the number of rows (m): ";
+    cin >> m;
+    cout << "Enter the number of columns (v): ";
+    cin >> v;
+
+    // Declare a 2D array with size m x v
+    int A[m][v];
+
+    // Take input for each element of the matrix
+    cout << "Enter the elements of the matrix:" << endl;
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < v; ++j) {
+            cout << "Element [" << i << "][" << j << "]: ";
+            cin >> A[i][j];
+        }
+    }
+
+    // Calculate and print the sum of each row
+    cout << "Row-wise sums:" << endl;
+    for (int i = 0; i < m; ++i) {
+        int rowSum = 0;
+        for (int j = 0; j < v; ++j) {
+            rowSum += A[i][j];
+        }
+        cout << "Sum of row " << i << ": " << rowSum << endl;
+    }
+
+  /problem5
+    int rows, cols;
+
+    // Take input for the number of rows and columns
+    cout << "Enter the number of rows (m): ";
+    cin >> rows;
+    cout << "Enter the number of columns (n): ";
+    cin >> cols;
+
+    // Declare 2D arrays A, B, and C with size rows x cols
+    int A[rows][cols], B[rows][cols], C[rows][cols];
+
+    // Take input for each element of matrix A
+    cout << "Enter the elements of matrix A:" << endl;
+    for (int rowIndex = 0; rowIndex < rows; ++rowIndex) {
+        for (int colIndex = 0; colIndex < cols; ++colIndex) {
+            cout << "A[" << rowIndex << "][" << colIndex << "]: ";
+            cin >> A[rowIndex][colIndex];
+        }
+    }
+
+    // Take input for each element of matrix B
+    cout << "Enter the elements of matrix B:" << endl;
+    for (int rowIndex = 0; rowIndex < rows; ++rowIndex) {
+        for (int colIndex = 0; colIndex < cols; ++colIndex) {
+            cout << "B[" << rowIndex << "][" << colIndex << "]: ";
+            cin >> B[rowIndex][colIndex];
+        }
+    }
+
+    // Calculate the sum of matrices A and B, store it in matrix C
+    for (int rowIndex = 0; rowIndex < rows; ++rowIndex) {
+        for (int colIndex = 0; colIndex < cols; ++colIndex) {
+            C[rowIndex][colIndex] = A[rowIndex][colIndex] + B[rowIndex][colIndex];
+        }
+    }
+
+    // Print the resulting matrix C
+    cout << "Resulting matrix C (A + B):" << endl;
+    for (int rowIndex = 0; rowIndex < rows; ++rowIndex) {
+        for (int colIndex = 0; colIndex < cols; ++colIndex) {
+            cout << C[rowIndex][colIndex] << " ";
+        }
+        cout << endl;
+    }
+
+
+
+  
+
+    return 0;
+}
